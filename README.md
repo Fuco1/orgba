@@ -21,13 +21,13 @@ people want to solve.
         - [orgba-get-drawer `(name &optional use-children)`](#orgba-get-drawer-name-optional-use-children)
         - [orgba-get-drawer-create `(name &optional use-children)`](#orgba-get-drawer-create-name-optional-use-children)
     - [tables](#tables)
-        - [orgba-insert-table `(&rest columns)`](#orgba-insert-table-rest-columns)
+        - [orgba-table-insert `(&rest columns)`](#orgba-table-insert-rest-columns)
         - [orgba-append-row `(row-data)`](#orgba-append-row-row-data)
         - [orgba-lisp-to-table `(table-data)`](#orgba-lisp-to-table-table-data)
     - [headings](#headings)
         - [orgba-next-heading](#orgba-next-heading)
-        - [orgba-next-uncle-heading](#orgba-next-uncle-heading)
-        - [orgba-top-heading](#orgba-top-heading)
+        - [orgba-next-parent-sibling](#orgba-next-parent-sibling)
+        - [orgba-top-parent](#orgba-top-parent)
         - [orgba-heading-at `(&optional point)`](#orgba-heading-at-optional-point)
         - [orgba-heading-title-at `(&optional point)`](#orgba-heading-title-at-optional-point)
         - [orgba-map-headings `(fun)`](#orgba-map-headings-fun)
@@ -106,7 +106,7 @@ subtrees unless `use-children` is non-nil.
 
 ## tables
 
-### orgba-insert-table `(&rest columns)`
+### orgba-table-insert `(&rest columns)`
 
 Insert a new empty table with `columns`.
 
@@ -122,13 +122,13 @@ Go to next heading or end of file if at the last heading.
 
 Return point.
 
-### orgba-next-uncle-heading
+### orgba-next-parent-sibling
 
 Go to the first sibling of parent heading or end of file.
 
 Return point.
 
-### orgba-top-heading
+### orgba-top-parent
 
 Go to the top parent of current heading.
 

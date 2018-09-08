@@ -90,7 +90,7 @@ subtrees unless USE-CHILDREN is non-nil."
       (org-insert-drawer nil name)
       (point))))
 
-(defun orgba-insert-table (&rest columns)
+(defun orgba-table-insert (&rest columns)
   "Insert a new empty table with COLUMNS."
   (insert (format "| %s |\n|-"
                   (mapconcat 'identity columns " | ")))
