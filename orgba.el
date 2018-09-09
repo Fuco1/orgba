@@ -167,6 +167,7 @@ If ACTIVE is non-nil, format as active timestamp."
     (ignore-errors (while (outline-up-heading 1)))
     (org-narrow-to-subtree)))
 
+;; TODO: use (org-element-table-cell-parser)
 (defun orgba-table-select-cell ()
   "Select the cell in org table the point is in."
   (interactive)
