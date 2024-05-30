@@ -29,6 +29,7 @@
 ;;; Code:
 
 (require 'org)
+(require 'org-element)
 
 (defun orgba-get-property (name &optional dont-inherit)
   "Get property NAME of current heading.
@@ -107,6 +108,7 @@ Return point."
   "Go to the first sibling of parent heading or end of file.
 
 Return point."
+  (interactive)
   (condition-case err
       (progn
         (outline-up-heading 1)
@@ -118,6 +120,29 @@ Return point."
   "Go to the top parent of current heading."
   (interactive)
   (while (org-up-heading-safe)))
+
+(defun orgba-get-parent-headline-elements ()
+  "Get all parent headline elements of current heading.
+
+They are ordered from the nearest to furthest, that is from
+deepest level first."
+  (save-excursion
+    (org-back-to-heading t)
+    (let ((elem (org-element-at-point))
+          (parents nil))
+      (while (and (setq elem (org-element-property :parent elem))
+                  (eq (org-element-type elem) 'headline))
+        (push elem parents))
+      (nreverse parents))))
+
+(defun orgba-get-parent-headings ()
+  "Get all parent headings.
+
+They are ordered from the nearest to furthest, that is from
+deepest level first."
+  (mapcar
+   (lambda (elem) (org-element-property :raw-value elem))
+   (orgba-get-parent-headline-elements)))
 
 (defun orgba-heading-at (&optional point)
   "Return the heading element at POINT."
